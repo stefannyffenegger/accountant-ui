@@ -8,7 +8,7 @@ Accountant Budgeting Frontend based on React/Next.js and Tailwind CSS
 ## Deployment
 - download and install node.js https://nodejs.org/en/download/
 - open terminal
-`cd C:\git\accountant\accountant-ui`
+`cd ..\accountant-ui`
 
 ## Getting Started
 
