@@ -1,15 +1,15 @@
 import React from "react";
 
-interface NavbarProp {
-  burger?: HTMLLabelElement;
+interface NavbarProps {
+  drawerId?: string;
 }
 
-const Navbar = () => {
+const Navbar = ({ drawerId }: NavbarProps) => {
   return (
     <>
       <div className="navbar bg-base-100">
         <div className="flex-none">
-          <button className="btn btn-square btn-ghost">
+          <label htmlFor={drawerId} className="btn btn-square btn-ghost">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -23,10 +23,10 @@ const Navbar = () => {
                 d="M4 6h16M4 12h16M4 18h16"
               ></path>
             </svg>
-          </button>
+          </label>
         </div>
         <div className="flex-1">
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">Accountant</a>
         </div>
         <div className="flex-none">
           <button className="btn btn-square btn-ghost">
