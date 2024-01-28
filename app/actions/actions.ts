@@ -2,6 +2,18 @@
 import Contact from '@/models/Contacts';
 import { revalidatePath } from 'next/cache';
 
+// list
+export async function accountsList(formData:FormData) {
+  const form = formData.get("")
+}
+
+// add
+
+// delete
+
+// view
+
+// update
 export async function contactList(params) {
   try {
     const limit = 5;
