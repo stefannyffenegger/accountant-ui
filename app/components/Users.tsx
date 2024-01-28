@@ -9,7 +9,7 @@ interface User {
 
 const Users = async () => {
   //const res = await fetch("https://jsonplaceholder.typicode.com/users");
-  const res = await fetch("http://127.0.0.1:8000/api/v1/users/");
+  const res = await fetch("http://127.0.0.1:8000/api/users/");
   const users: User[] = await res.json();
   return (
     <>
