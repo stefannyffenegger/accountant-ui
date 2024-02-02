@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Users from "./Users";
+import Navbar from "./navbar";
+import AccountsTable from "./accounts-table";
 
 const Menu = () => {
   const drawerId = "sidebar-right";
@@ -11,7 +11,7 @@ const Menu = () => {
         <div className="drawer-content">
           {/* Page content here */}
           <Navbar drawerId={drawerId} />
-          <Users />
+          <AccountsTable accounts={} />
         </div>
         <div className="drawer-side">
           <label
