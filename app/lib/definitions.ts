@@ -12,7 +12,7 @@ export type AccountsTableType = {
     description: string;
     currency: string;
     owners: string[];
-  };
+};
   
   export type FormattedAccountsTable = {
     id: number;
@@ -20,4 +20,20 @@ export type AccountsTableType = {
     description: string;
     currency: string;
     owners: string[];
-  };
+};
+
+export type TransactionsTableType = {
+  id: number;
+  name: string;
+  description: string;
+  currency: string;
+  owners: string[];
+};
+
+export type FormattedTransactionsTable = {
+  id: number;
+  name: string;
+  description: string;
+  currency: string;
+  owners: string[];
+};
