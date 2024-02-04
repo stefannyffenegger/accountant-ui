@@ -2,7 +2,7 @@ import React from "react";
 import Navbar from "./navbar";
 import AccountsTable from "./accounts-table";
 
-const Menu = () => {
+export default function Menu() {
   const drawerId = "sidebar-right";
   return (
     <>
@@ -11,7 +11,7 @@ const Menu = () => {
         <div className="drawer-content">
           {/* Page content here */}
           <Navbar drawerId={drawerId} />
-          <AccountsTable accounts={} />
+          <AccountsTable />
         </div>
         <div className="drawer-side">
           <label
@@ -32,6 +32,4 @@ const Menu = () => {
       </div>
     </>
   );
-};
-
-export default Menu;
+}

@@ -3,10 +3,11 @@ import {
   FormattedAccountsTable
 } from '@/app/lib/definitions';
 
-export default async function AccountsTable({ accounts }: { accounts: FormattedAccountsTable[]; }) {
+export default async function AccountsTable() {
   //const res = await fetch("https://jsonplaceholder.typicode.com/users");
   //const res = await fetch("http://127.0.0.1:8000/api/users/");
-  //const accounts = accountsList;
+  const res = await fetch("http://127.0.0.1:8000/api/accounts");
+  const accounts: FormattedAccountsTable[] = await res.json();
   return (
     <>
       <div className="overflow-x-auto">
@@ -24,7 +25,10 @@ export default async function AccountsTable({ accounts }: { accounts: FormattedA
             {accounts.map((account) => (
               <tr key={account.id}>
                 <th>{account.id}</th>
-                <th>{account.name}</th>
+                <th><div className="tooltip tooltip-bottom" data-tip={account.description}>
+                  {account.name}
+                  </div>
+                </th>
                 <th>{account.description}</th>
                 <th>{account.currency}</th>
               </tr>

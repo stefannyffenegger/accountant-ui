@@ -4,7 +4,7 @@ interface NavbarProps {
   drawerId?: string;
 }
 
-const Navbar = ({ drawerId }: NavbarProps) => {
+export default function Navbar({ drawerId }: NavbarProps) {
   return (
     <>
       <div className="navbar bg-base-100">
@@ -48,6 +48,4 @@ const Navbar = ({ drawerId }: NavbarProps) => {
       </div>
     </>
   );
-};
-
-export default Navbar;
+}
