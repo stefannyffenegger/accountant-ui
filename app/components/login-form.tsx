@@ -1,6 +1,6 @@
 "use client";
 
-import { authenticate } from "@/lib/actions";
+import { authenticate } from "@/app/lib/actions";
 import { Button } from "./button";
 import { useFormState, useFormStatus } from "react-dom";
 

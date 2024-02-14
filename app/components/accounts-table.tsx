@@ -1,4 +1,7 @@
-import { AccountsTableType, FormattedAccountsTable } from "@/lib/definitions";
+import {
+  AccountsTableType,
+  FormattedAccountsTable,
+} from "@/app/lib/definitions";
 
 export default async function AccountsTable() {
   const res = await fetch("http://127.0.0.1:8000/api/accounts");
