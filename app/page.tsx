@@ -1,9 +1,11 @@
-import Menu from "./components/menu";
+import { Card } from "./components/ui/card";
+import Sidebar from "./components/ui/sidebar";
 
 export default function Home() {
   return (
     <main>
-      <Menu />
+      <Sidebar />
+      <Card />
     </main>
   );
 }

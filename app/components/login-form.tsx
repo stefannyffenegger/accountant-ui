@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { authenticate } from '@/app/lib/actions';
-import { Button } from './button';
-import { useFormState, useFormStatus } from 'react-dom';
+import { authenticate } from "@/lib/actions";
+import { Button } from "./button";
+import { useFormState, useFormStatus } from "react-dom";
 
 export default function LoginForm() {
   const [errorMessage, dispatch] = useFormState(authenticate, undefined);
@@ -10,9 +10,7 @@ export default function LoginForm() {
   return (
     <form action={dispatch} className="space-y-3">
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1>
-          Please log in to continue.
-        </h1>
+        <h1>Please log in to continue. [WORK IN PROGRESS...]</h1>
         <div className="w-full">
           <div>
             <label
@@ -74,7 +72,7 @@ function LoginButton() {
 
   return (
     <Button className="mt-4 w-full" aria-disabled={pending}>
-        Log in
+      Log in
     </Button>
   );
 }

@@ -1,7 +1,4 @@
-import {
-  AccountsTableType,
-  FormattedAccountsTable
-} from '@/app/lib/definitions';
+import { AccountsTableType, FormattedAccountsTable } from "@/lib/definitions";
 
 export default async function AccountsTable() {
   const res = await fetch("http://127.0.0.1:8000/api/accounts");
@@ -20,12 +17,17 @@ export default async function AccountsTable() {
           <tbody>
             {accounts.map((account) => (
               <tr key={account.id}>
-                <th><div className="tooltip tooltip-bottom" data-tip={account.description}>
-                  {account.name}
+                <th>
+                  <div
+                    className="tooltip tooltip-bottom"
+                    data-tip={account.description}
+                  >
+                    {account.name}
                   </div>
                 </th>
                 <th>{account.currency}</th>
-                <th><div className="join join-vertical lg:join-horizontal">
+                <th>
+                  <div className="join join-vertical lg:join-horizontal">
                     <button className="btn join-item">E</button>
                     <button className="btn join-item">D</button>
                   </div>
