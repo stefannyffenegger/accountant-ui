@@ -14,6 +14,8 @@ import {
 } from "./accordion";
 import { StatisticsBarChart } from "./statistics";
 import TransactionsTable from "../transactions/transactions-table";
+import { DataTable } from "./data-table";
+import { columns } from "@/app/components/transactions/transactions-column";
 
 export default function Sidebar() {
   const [open, setOpen] = useState(false);
@@ -145,6 +147,9 @@ export default function Sidebar() {
             <AccordionContent>
               <Card>
                 <CardContent>
+                  {
+                    // <DataTable columns={columns} data={data} />
+                  }
                   <TransactionsTable />
                 </CardContent>
               </Card>

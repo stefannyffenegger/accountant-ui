@@ -1,14 +1,37 @@
-import { Transaction, columns } from "./transactions-column";
+import { columns } from "./transactions-column";
 import { DataTable } from "../ui/data-table";
+import { Transaction } from "@/app/lib/definitions";
 
 async function getData(): Promise<Transaction[]> {
   // Fetch data from your API here.
   return [
     {
-      id: "728ed52f",
-      amount: 100,
-      status: "pending",
-      email: "m@example.com",
+      id: 232,
+      name: "Bonus",
+      amount: 3000.5,
+      description: "2023",
+      created_by: "mike@example.com",
+    },
+    {
+      id: 331,
+      name: "Salary Jan",
+      amount: 5777.55,
+      description: "Monthly Salary",
+      created_by: "alice@example.com",
+    },
+    {
+      id: 332,
+      name: "Salary Feb",
+      amount: 5730.25,
+      description: "Monthly Salary",
+      created_by: "bob@example.com",
+    },
+    {
+      id: 223,
+      name: "Groceries Feb",
+      amount: 244.65,
+      description: "",
+      created_by: "mike@example.com",
     },
     // ...
   ];
@@ -17,9 +40,5 @@ async function getData(): Promise<Transaction[]> {
 export default async function TransactionsTable() {
   const data = await getData();
 
-  return (
-    <div className="container mx-auto py-10">
-      <DataTable columns={columns} data={data} />
-    </div>
-  );
+  return <DataTable columns={columns} data={data} />;
 }
