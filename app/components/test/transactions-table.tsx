@@ -4,7 +4,7 @@ import {
 } from "@/app/lib/definitions";
 
 export default async function TransactionsTable() {
-  const res = await fetch("http://127.0.0.1:8000/api/transactions");
+  const res = await fetch("http://127.0.0.1:8000/api/transactions/");
   const accounts: FormattedAccountsTable[] = await res.json();
   return (
     <>

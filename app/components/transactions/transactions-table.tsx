@@ -1,8 +1,9 @@
 import { columns } from "./transactions-column";
 import { DataTable } from "../ui/data-table";
 import { Transaction } from "@/app/lib/definitions";
+import { getTransactions } from "@/app/lib/data";
 
-async function getData(): Promise<Transaction[]> {
+async function getTestData(): Promise<Transaction[]> {
   // Fetch data from your API here.
   return [
     {
@@ -38,7 +39,7 @@ async function getData(): Promise<Transaction[]> {
 }
 
 export default async function TransactionsTable() {
-  const data = await getData();
+  const data = await getTransactions(); //getTestData();
 
   return <DataTable columns={columns} data={data} />;
 }

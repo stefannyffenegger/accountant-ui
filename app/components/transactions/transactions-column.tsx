@@ -84,10 +84,12 @@ export const columns: ColumnDef<Transaction>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuItem
               onClick={() =>
-                navigator.clipboard.writeText(transaction.amount.toString())
+                navigator.clipboard.writeText(
+                  transaction.name + "," + transaction.amount.toString()
+                )
               }
             >
-              Copy Transaction ID
+              Copy Transaction
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>Edit</DropdownMenuItem>

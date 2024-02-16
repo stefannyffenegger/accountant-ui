@@ -11,7 +11,7 @@ export async function getTransactions(): Promise<Transaction[]> {
       // console.log('Fetching revenue data...');
       // await new Promise((resolve) => setTimeout(resolve, 3000));
   
-      const data = await fetch("http://127.0.0.1:8000/api/transactions");
+      const data = await fetch("http://127.0.0.1:8000/api/transactions/");
   
       // console.log('Data fetch completed after 3 seconds.');
   
