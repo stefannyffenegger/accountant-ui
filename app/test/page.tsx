@@ -1,9 +1,10 @@
-import Sidebar from "../components/ui/sidebar-old";
+import Sidebar from "../components/ui/sidebar";
+import AddTransaction from "../components/ui/transaction-modal-add";
 
 export default function TestPage() {
   return (
     <>
-      <Sidebar />
+      <AddTransaction />
     </>
   );
 }

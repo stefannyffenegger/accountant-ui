@@ -1,15 +1,10 @@
-import NextAuth from 'next-auth';
-import Credentials from 'next-auth/providers/credentials';
-import bcrypt from 'bcrypt';
-//import { sql } from '@vercel/postgres';
-//import { z } from 'zod';
-import type { User } from '@/app/lib/definitions';
+import NextAuth, { User } from 'next-auth';
+import Credentials from '@auth/core/providers/credentials';
+import { z } from 'zod';
 import { authConfig } from './auth.config';
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
-    //const user = await sql<User>`SELECT * FROM users WHERE email=${email}`;
-    //return user.rows[0];
     const result = await fetch("http://127.0.0.1:8000/api/users");
     const user = await result.json();
     return user;
@@ -21,25 +16,26 @@ async function getUser(email: string): Promise<User | undefined> {
 
 export const { auth, signIn, signOut } = NextAuth({
   ...authConfig,
+  session: {
+    strategy: "jwt",
+  },
   providers: [
     Credentials({
       async authorize(credentials) {
-        //const parsedCredentials = z
-        //  .object({ email: z.string().email(), password: z.string().min(6) })
-        //  .safeParse(credentials);
+        const parsedCredentials = z
+          .object({ email: z.string().email(), password: z.string().min(6) })
+          .safeParse(credentials);
 
-        //if (parsedCredentials.success) {
-        //  const { email, password } = parsedCredentials.data;
+        if (parsedCredentials.success) {
+          const { email, password } = parsedCredentials.data;
 
-        //  const user = await getUser(email);
-        //  if (!user) return null;
+          const user = await getUser(email); //check jwt/response "getJWT"
+          if (!user) return null;
+          return user;
+        }
 
-        //  const passwordsMatch = await bcrypt.compare(password, user.password);
-        //  if (passwordsMatch) return user;
-        //}
-
-        //console.log('Invalid credentials');
-        //return null;
+        console.log('Invalid credentials');
+        return null;
       },
     }),
   ],

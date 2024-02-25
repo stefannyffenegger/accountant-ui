@@ -1,5 +1,7 @@
-'use server'
+'use server';
+
 import { revalidatePath } from 'next/cache';
+import { redirect } from 'next/navigation';
 import { signIn } from '@/auth';
 import { AuthError } from 'next-auth';
 
@@ -8,6 +10,9 @@ export async function authenticate(
   formData: FormData,
 ) {
   try {
+    formData.append("redirect", "true");
+    formData.append("redirectTo", "/");
+    console.log("FORM DATA:",formData);
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {

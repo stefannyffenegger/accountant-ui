@@ -12,15 +12,15 @@ export default function RegisterPage() {
                   <h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
                     Sign up
                   </h1>
-                  <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                    Already have an account?
+                  <div className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+                    <p>Already have an account?</p>
                     <Link
                       className="text-blue-600 decoration-2 hover:underline font-medium dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
                       href="/login"
                     >
                       Sign in here
                     </Link>
-                  </p>
+                  </div>
                 </div>
 
                 <div className="mt-5">
@@ -146,7 +146,7 @@ export default function RegisterPage() {
                       {/* End Form Group */}
 
                       {/* Checkbox */}
-                      <div className="flex items-center">
+                      {/*                       <div className="flex items-center">
                         <div className="flex">
                           <input
                             id="remember-me"
@@ -169,7 +169,7 @@ export default function RegisterPage() {
                             </a>
                           </label>
                         </div>
-                      </div>
+                      </div> */}
                       {/* End Checkbox */}
 
                       <button
