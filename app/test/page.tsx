@@ -1,9 +1,9 @@
-import TransactionsTable from "../components/test/transactions-table";
+import Sidebar from "../components/ui/sidebar-old";
 
 export default function TestPage() {
   return (
     <>
-      <TransactionsTable />
+      <Sidebar />
     </>
   );
 }

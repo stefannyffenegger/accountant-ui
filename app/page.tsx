@@ -1,10 +1,6 @@
 import { Card } from "./components/ui/card";
-import Sidebar from "./components/ui/sidebar";
+import Sidebar from "./components/ui/sidebar-old";
 
 export default function Home() {
-  return (
-    <main>
-      <Sidebar />
-    </main>
-  );
+  return <main>Test Page!</main>;
 }
