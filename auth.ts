@@ -7,7 +7,7 @@ import { User } from './app/lib/definitions';
 async function getUser(email: string, password: string): Promise<User | null> {
   try {
     // get new JWT pair (access, refresh token)
-    const res = await fetch("http://localhost:8000/auth/jwt/create/", {
+    const res = await fetch(process.env.BACKEND_URL+"/auth/jwt/create/", {
       method: "POST",
       body: JSON.stringify({
         email: email,
@@ -22,8 +22,8 @@ async function getUser(email: string, password: string): Promise<User | null> {
     }
 
     // prepare user object
-    let user: User = {email}
     const parsedResponse = await res.json();
+    let user: User = {email}
     user.refresh_token = parsedResponse.refresh;
     user.access_token = parsedResponse.access;
 
@@ -55,6 +55,7 @@ export const { auth, signIn, signOut } = NextAuth({
           const user = await getUser(email, password);
           // could probably just return user, since it can only be User | null
           if (!user) return null;
+          console.log("USER:", user)
           return user;
         }
         

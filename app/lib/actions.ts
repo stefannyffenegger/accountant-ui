@@ -12,7 +12,7 @@ export async function authenticate(
   try {
     formData.append("redirect", "true");
     formData.append("redirectTo", "/");
-    console.log("FORM DATA:",formData);
+    //console.log("FORM DATA:",formData);
     await signIn('credentials', formData);
   } catch (error) {
     if (error instanceof AuthError) {

@@ -20,7 +20,6 @@ export default function RootLayout({
     <html lang="en">
       <PrelineScript />
       <body className={inter.className}>
-        {" "}
         <Sidebar />
         {children}
       </body>
