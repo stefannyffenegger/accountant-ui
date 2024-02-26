@@ -1,9 +1,10 @@
 export type User = {
-    id: number;
+    id?: string;
     email: string;
-    password: string;
-    first_name: string;
-    last_name: string;
+    first_name?: string;
+    last_name?: string;
+    refresh_token?: string;
+    access_token?: string;
 };
 
 export type Account = {

@@ -4,7 +4,7 @@ import AddTransaction from "../components/ui/transaction-modal-add";
 export default function TestPage() {
   return (
     <>
-      <AddTransaction />
+      <div className="bg-slate-500">LOGIN SUCCESSFUL!</div>
     </>
   );
 }

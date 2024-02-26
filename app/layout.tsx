@@ -18,12 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+      <PrelineScript />
       <body className={inter.className}>
         {" "}
         <Sidebar />
         {children}
       </body>
-      <PrelineScript />
     </html>
   );
 }

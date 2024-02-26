@@ -1,5 +1,4 @@
 "use client";
-import { HSDropdown, HSAccordion } from "preline";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
