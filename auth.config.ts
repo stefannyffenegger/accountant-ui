@@ -9,10 +9,12 @@ export const authConfig = {
     // while this file is also used in non-Node.js environments
   ],
   callbacks: {
+    //TODO optional: async signIn(){} >> e.g. only allow login for verified accounts
+    //TODO: async jwt(){} >> add refresh token rotation
     authorized({ auth, request: { nextUrl } }) {
       const isLoggedIn = !!auth?.user;
       console.log("User?: ", auth?.user)
-      console.log("AuthToken?: ", auth?.expires)
+      console.log("Expires?: ", auth?.expires)
       //console.log("AuthRequest: ", nextUrl)
       //const isOnDashboard = nextUrl.pathname.startsWith('/dashboard');
       /*if (isOnDashboard) {
