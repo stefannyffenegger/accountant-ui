@@ -1,13 +1,13 @@
-import Credentials from '@auth/core/providers/credentials';
-import NextAuth from 'next-auth';
-import { z } from 'zod';
-import { authConfig } from './auth.config';
-import { User } from './app/lib/definitions';
+import Credentials from "@auth/core/providers/credentials";
+import NextAuth from "next-auth";
+import { z } from "zod";
+import { authConfig } from "./auth.config";
+import { User } from "./app/lib/definitions";
 
 async function getUser(email: string, password: string): Promise<User | null> {
   try {
     // get new JWT pair (access, refresh token)
-    const res = await fetch(process.env.BACKEND_URL+"/auth/jwt/create/", {
+    const res = await fetch(process.env.BACKEND_URL + "/auth/jwt/create/", {
       method: "POST",
       body: JSON.stringify({
         email: email,
@@ -23,16 +23,16 @@ async function getUser(email: string, password: string): Promise<User | null> {
 
     // prepare user object
     const parsedResponse = await res.json();
-    let user: User = {email}
+    let user: User = { email };
     user.refresh_token = parsedResponse.refresh;
     user.access_token = parsedResponse.access;
 
     //TODO: fetch other user attributes from /auth/users/me/ (with access jwt)
 
-   // return user object
+    // return user object
     return user;
   } catch (error) {
-    console.error('Failed to fetch user:', error);
+    console.error("Failed to fetch user:", error);
     return null;
   }
 }
@@ -54,12 +54,12 @@ export const { auth, signIn, signOut } = NextAuth({
 
           const user = await getUser(email, password);
           // could probably just return user, since it can only be User | null
-          if (!user) return null;
-          console.log("USER:", user)
+          //if (!user) return null; >> uncomment if needed
+          console.log("USER:", user);
           return user;
         }
-        
-        console.log('Invalid credentials');
+
+        console.log("Invalid credentials");
         return null;
       },
     }),

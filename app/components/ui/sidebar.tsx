@@ -10,8 +10,11 @@ import {
 import { CiVault, CiBank, CiLogout } from "react-icons/ci";
 import AddTransaction from "./transaction-modal-add";
 import { signOut } from "@/auth";
+import { getAccounts } from "@/app/lib/data";
+import { Account } from "@/app/lib/definitions";
 
-export default function Sidebar() {
+export default async function Sidebar() {
+  const accounts = await getAccounts();
   return (
     <>
       {/* Navigation Toggle */}
@@ -47,6 +50,8 @@ export default function Sidebar() {
             <li>
               <AddTransaction />
             </li>
+
+            <AccountsList accounts={accounts} />
 
             <li className="hs-accordion" id="users-accordion">
               <button
@@ -188,5 +193,84 @@ function SignOutButton({ color }: { color?: string }) {
         <div>Sign Out</div>
       </button>
     </form>
+  );
+}
+
+async function AccountsList({ accounts }: { accounts: Account[] | null }) {
+  return (
+    <li className="hs-accordion" id="accounts-accordion">
+      <button
+        type="button"
+        className="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:hs-accordion-active:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+      >
+        <CiBank className="size-4" />
+        Accounts
+        <FaChevronUp className="hs-accordion-active:block ms-auto hidden size-4 text-gray-600 group-hover:text-gray-500 dark:text-gray-400" />
+        <FaChevronDown className="hs-accordion-active:hidden ms-auto block size-4 text-gray-600 group-hover:text-gray-500 dark:text-gray-400" />
+      </button>
+      <div
+        id="accounts-accordion"
+        className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
+      >
+        <ul
+          className="hs-accordion-group ps-3 pt-2"
+          data-hs-accordion-always-open
+        >
+          {!accounts ? (
+            <li>
+              <div className="w-full bg-slate-700 rounded py-1 px-2">
+                <p className="text-gray-600 dark:text-gray-400 text-xs">
+                  Data not available...
+                </p>
+              </div>
+            </li>
+          ) : (
+            accounts?.map((account) => (
+              <li
+                key={account.id}
+                className="hs-accordion"
+                id="accounts-accordion-sub-1"
+              >
+                <button
+                  type="button"
+                  className="hs-accordion-toggle hs-accordion-active:text-blue-600 hs-accordion-active:hover:bg-transparent w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:hs-accordion-active:text-white dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                >
+                  {account.name}
+                  <FaChevronUp className="hs-accordion-active:block ms-auto hidden size-3 text-gray-600 group-hover:text-gray-500 dark:text-gray-400" />
+                  <FaChevronDown className="hs-accordion-active:hidden ms-auto block size-3 text-gray-600 group-hover:text-gray-500 dark:text-gray-400" />
+                </button>
+                <div
+                  id="accounts-accordion-sub-1"
+                  className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden"
+                >
+                  <label
+                    htmlFor="hs-leading-multiple-add-on"
+                    className="sr-only"
+                  >
+                    Account Functions
+                  </label>
+                  <div className="flex rounded-lg shadow-sm">
+                    <button
+                      type="button"
+                      className="py-1 px-2 inline-flex justify-center items-center gap-x-2 text-xs rounded-s-md border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    >
+                      <FaPlus />
+                      Transaction
+                    </button>
+                    <button
+                      type="button"
+                      className="py-1 px-2 inline-flex justify-center items-center gap-x-2 text-xs rounded-e-md border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                    >
+                      <FaPencil />
+                      Edit
+                    </button>
+                  </div>
+                </div>
+              </li>
+            ))
+          )}
+        </ul>
+      </div>
+    </li>
   );
 }
