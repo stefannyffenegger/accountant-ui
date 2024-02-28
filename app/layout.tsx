@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import PrelineScript from "@/app/components/preline";
+import Sidebar from "./components/ui/sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-theme="cupcake">
-      <body className={inter.className}>{children}</body>
+    <html lang="en">
+      <PrelineScript />
+      <body className={inter.className}>
+        <Sidebar />
+        {children}
+      </body>
     </html>
   );
 }

@@ -1,7 +1,13 @@
-import React from "react";
+import { Metadata } from 'next';
 
-const AccountsPage = () => {
-  return <div>Accounts</div>;
+export const metadata: Metadata = {
+  title: 'Accounts',
 };
 
-export default AccountsPage;
+export default async function AccountsPage() {
+  return (
+    <>
+    <div>Accounts</div>
+    </>
+  );
+}
