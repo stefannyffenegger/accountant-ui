@@ -1,0 +1,40 @@
+version: "3"
+
+services:
+  ensemble-dev:
+    container_name: accountant-ui-dev
+    build:
+#      context: ./
+      dockerfile: ./app/dev.Dockerfile
+
+    # Set environment variables directly in the docker-compose file
+    environment:
+      AUTH_SECRET: 'ifa1QWaW30UYbo4bo6sHJCDZaJs83p4jpl8cnWijkiI='
+      AUTH_URL: 'https://ensemble.lab.nyst.ch/api/auth'
+      DATABASE_URL: 'file:./dev.db'
+
+    # Set environment variables based on the .env file
+    #env_file:
+    #  - .env
+#    volumes:
+#      - ./app:/app
+#      - ./public:/public
+    restart: always
+    ports:
+      - 3100:3100
+
+  ensemble:
+    container_name: accountant-ui
+    build:
+#      context: ./app
+      dockerfile: ./app/prod.Dockerfile
+      #args:
+      #  ENV_VARIABLE: ${ENV_VARIABLE}
+      #  NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+    environment:
+      AUTH_SECRET: 'ifa1QWaW30UYbo4bo6sHJCDZaJs83p4jpl8cnWijkiI='
+      AUTH_URL: 'http://10.10.2.30/api/auth'
+      DATABASE_URL: 'file:./dev.db'
+    restart: always
+    ports:
+      - 3200:3200
