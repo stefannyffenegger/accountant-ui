@@ -7,10 +7,10 @@ import {
   FaPencil,
   FaBars,
 } from "react-icons/fa6";
-import { CiVault, CiBank, CiLogout } from "react-icons/ci";
+import { CiVault, CiBank, CiLogout, CiLogin } from "react-icons/ci";
 import AddTransaction from "./transaction-modal-add";
 import { signOut } from "@/auth";
-import { getAccounts } from "@/app/lib/data";
+import { getAccessTokenFromSession, getAccounts } from "@/app/lib/data";
 import { Account } from "@/app/lib/definitions";
 
 export default async function Sidebar() {
@@ -75,9 +75,21 @@ export default async function Sidebar() {
             </li>
           </ul>
         </nav>
-        <div className="p-6 w-full flex flex-col flex-wrap justify-end">
-          <SignOutButton color="w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" />
-        </div>
+        {!(await getAccessTokenFromSession()) ? (
+          <div className="p-6 w-full flex flex-col flex-wrap justify-end">
+            <Link
+              href="/login"
+              className="w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+            >
+              <CiLogin className="size-4" />
+              Login
+            </Link>
+          </div>
+        ) : (
+          <div className="p-6 w-full flex flex-col flex-wrap justify-end">
+            <SignOutButton color="w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-lg hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-900 dark:text-slate-400 dark:hover:text-slate-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600" />
+          </div>
+        )}
       </div>
     </>
   );
@@ -93,7 +105,7 @@ function SignOutButton({ color }: { color?: string }) {
     >
       <button className={color}>
         <CiLogout className="size-4" />
-        <div>Sign Out</div>
+        <div>Logout</div>
       </button>
     </form>
   );

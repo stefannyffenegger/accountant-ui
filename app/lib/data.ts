@@ -1,6 +1,20 @@
 import { Account, Transaction } from "./definitions";
 import { auth } from "@/auth";
-import { getToken } from "next-auth/jwt";
+
+export async function getAccessTokenFromSession(): Promise<string | null> {
+  // get jwt from session >> should be removed from session in future auth.js release
+  const session: any = await auth();
+  //console.log("JWT from Session:", session?.token.access_token);
+
+  try {
+    if (!session.token.access_token) {
+      return null;
+    }
+    return session.token.access_token;
+  } catch (error) {
+    return null;
+  }
+}
 
 export async function getAccounts(): Promise<Account[] | null> {
   try {
@@ -9,19 +23,19 @@ export async function getAccounts(): Promise<Account[] | null> {
 
     // console.log('Fetching data...');
     // await new Promise((resolve) => setTimeout(resolve, 3000));
-
-    // get jwt from session >> should be removed from session in future auth.js release
-    const session: any = await auth();
-    //console.log("DATA SESSION JWT:", session?.token);
+    let jwt = await getAccessTokenFromSession();
+    if (!jwt) {
+      return null;
+    }
     const data = await fetch(process.env.BACKEND_URL + "/api/accounts/", {
       method: "GET",
       headers: {
-        Authorization: "Bearer " + session?.token.access_token,
+        Authorization: "Bearer " + jwt,
         "Content-Type": "application/json",
       },
     });
 
-    console.log("DATA response:", data.ok);
+    //console.log("DATA response:", data.ok);
     if (!data.ok) {
       return null;
     }
@@ -33,11 +47,23 @@ export async function getAccounts(): Promise<Account[] | null> {
   }
 }
 
-export async function getTransactions(): Promise<Transaction[]> {
+export async function getTransactions(): Promise<Transaction[] | null> {
   try {
-    const data = await fetch(process.env.BACKEND_URL + "/api/transactions/");
+    let jwt = await getAccessTokenFromSession();
+    if (!jwt) {
+      return null;
+    }
+    const data = await fetch(process.env.BACKEND_URL + "/api/transactions/", {
+      method: "GET",
+      headers: {
+        Authorization: "Bearer " + jwt,
+        "Content-Type": "application/json",
+      },
+    });
 
-    // console.log('Data fetch completed after 3 seconds.');
+    if (!data.ok) {
+      return null;
+    }
 
     return data.json() as Promise<Transaction[]>;
   } catch (error) {

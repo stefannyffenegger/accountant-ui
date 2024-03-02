@@ -67,8 +67,8 @@ export const authConfig = {
       }
     },
     async session({ session, token }) {
-      console.log("SESSION session:", session);
-      console.log("SESSION token:", token);
+      //console.log("SESSION session:", session);
+      //console.log("SESSION token:", token);
       // Send properties to the client, like an access_token from a provider.
       return { ...session, token };
     },
